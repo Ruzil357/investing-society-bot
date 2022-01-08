@@ -9,7 +9,7 @@ namespace PsnHackathonBot.Modules
     {
         private static DateTime IstTime => DateTime.UtcNow.AddHours(5).AddMinutes(30);
         private static readonly DateTime StartTime = new(2022, 1, 7, 11, 0, 0);
-        private static readonly DateTime EndTime = new(2022, 1, 9, 7, 0, 0);
+        private static readonly DateTime EndTime = new(2022, 1, 9, 19, 0, 0);
         private static bool Started => IstTime > StartTime;
         private static bool Ended => IstTime > EndTime;
 

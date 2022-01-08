@@ -49,11 +49,11 @@ namespace PsnHackathonBot.Services
             
             var welcomeMessage = new EmbedBuilder()
                 .WithTitle("Welcome to the server")
-                .WithDescription($"Thanks for joining the hackathon, {user.Mention}! We hope you enjoy your time here")
-                .AddField("Looking for help?", $"Read the FAQs in in <#{faq}>, as organizers in <#{askOrganizers}>")
+                .WithDescription($"Thanks for joining the hackathon, {user.Mention}! We hope you enjoy your time here. The hackathon will start on the **7th of January**")
+                .AddField("Looking for help?", $"Read the FAQs in in <#{faq}>. If you have any questions, ask the organizers in <#{askOrganizers}>")
                 .Build();
 
-            await user.Guild.GetTextChannel(welcomeUser).SendMessageAsync(null, false, welcomeMessage);
+            await user.Guild.GetTextChannel(welcomeUser).SendMessageAsync(user.Mention, false, welcomeMessage);
         }
 
         private async Task OnMessageReceived(SocketMessage arg)

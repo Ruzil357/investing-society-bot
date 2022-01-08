@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
@@ -17,17 +16,17 @@ namespace PsnHackathonBot.Modules
 
         [Command("clear")]
         [RequireUserPermission(GuildPermission.Administrator)]
-        public Task ClearMessages(int length)
+        public async Task ClearMessages(int length)
         {
+            await Context.Message.DeleteAsync();
             var _ = Task.Run(async () =>
             {
-                var items = Context.Channel.GetMessagesAsync(length + 1).Flatten();
+                var items = Context.Channel.GetMessagesAsync(Context.Message, Direction.Before, length).Flatten();
                 await foreach (var message in items)
                 {
                     await Context.Channel.DeleteMessageAsync(message);
                 }
             });
-            return Task.CompletedTask;
         }
     }
 }
