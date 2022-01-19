@@ -19,6 +19,7 @@ namespace PsnHackathonBot.Modules
         [RequireUserPermission(GuildPermission.Administrator)]
         public Task ClearMessages(int length)
         {
+            // Run as a task to not block events
             var _ = Task.Run(async () =>
             {
                 var items = Context.Channel.GetMessagesAsync(length + 1).Flatten();

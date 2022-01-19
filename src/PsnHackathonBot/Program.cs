@@ -40,7 +40,7 @@ namespace PsnHackathonBot
                         MessageCacheSize = 200,
                         GatewayIntents = GatewayIntents.Guilds
                                          | GatewayIntents.GuildMembers
-                                         | GatewayIntents.GuildMessages
+                                         | GatewayIntents.GuildMessages,
                     };
 
                     config.Token = context.Configuration["token"];
@@ -56,7 +56,8 @@ namespace PsnHackathonBot
                 .ConfigureServices((context, services) =>
                 {
                     services
-                        .AddHostedService<CommandHandler>();
+                        .AddHostedService<CommandHandler>()
+                        .AddScoped<IMessageLogger, ChannelMessageLogger>();
                 })
                 .UseConsoleLifetime();
 
