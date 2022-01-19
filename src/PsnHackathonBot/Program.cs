@@ -35,7 +35,7 @@ namespace PsnHackathonBot
                 {
                     config.SocketConfig = new DiscordSocketConfig
                     {
-                        LogLevel = LogSeverity.Debug,
+                        LogLevel = LogSeverity.Info,
                         AlwaysDownloadUsers = true,
                         MessageCacheSize = 200,
                         GatewayIntents = GatewayIntents.Guilds
