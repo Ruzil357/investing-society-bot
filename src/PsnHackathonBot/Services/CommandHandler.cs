@@ -63,19 +63,19 @@ namespace PsnHackathonBot.Services
                 return;
             }
 
-            if (_config.GetSection("channels").GetValue<ulong>("log") != arg3.Id)
+            if (_config.GetSection("channels").GetValue<ulong>("log") == newMessage.Channel.Id)
             {
-                if (newMessage.Channel is not SocketGuildChannel channel)
-                {
-                    return;
-                }
+                return;
+            }
 
-                var guild = channel.Guild;
-                if (guild.Id != _config.GetValue<ulong>("serverId"))
-                {
-                    return;
-                }
+            if (newMessage.Channel is not SocketGuildChannel channel)
+            {
+                return;
+            }
 
+            var guild = channel.Guild;
+            if (guild.Id == _config.GetValue<ulong>("serverId"))
+            {
                 _messageLogger.OnMessageEdited(newMessage, oldMessage);
             }
         }
@@ -87,19 +87,19 @@ namespace PsnHackathonBot.Services
                 return;
             }
 
-            if (_config.GetSection("channels").GetValue<ulong>("log") != message.Channel.Id)
+            if (_config.GetSection("channels").GetValue<ulong>("log") == message.Channel.Id)
             {
-                if (message.Channel is not SocketGuildChannel channel)
-                {
-                    return;
-                }
+                return;
+            }
 
-                var guild = channel.Guild;
-                if (guild.Id != _config.GetValue<ulong>("serverId"))
-                {
-                    return;
-                }
+            if (message.Channel is not SocketGuildChannel channel)
+            {
+                return;
+            }
 
+            var guild = channel.Guild;
+            if (guild.Id == _config.GetValue<ulong>("serverId"))
+            {
                 _messageLogger.OnMessageCreated(message);
             }
 
@@ -133,14 +133,14 @@ namespace PsnHackathonBot.Services
             }
 
 
-            if (_config.GetSection("channels").GetValue<ulong>("log") != channel.Id)
+            if (_config.GetSection("channels").GetValue<ulong>("log") == message.Channel.Id)
             {
-                var guild = channel.Guild;
-                if (guild.Id != _config.GetValue<ulong>("serverId"))
-                {
-                    return;
-                }
-
+                return;
+            }
+            
+            var guild = channel.Guild;
+            if (guild.Id == _config.GetValue<ulong>("serverId"))
+            {
                 _messageLogger.OnMessageDeleted(message);
             }
         }
