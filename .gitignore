@@ -9,6 +9,8 @@ lib-cov
 *.gz
 *.swp
 
+ecosystem.config.js
+
 pids
 logs
 results
