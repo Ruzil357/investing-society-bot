@@ -28,4 +28,10 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         password: ${{ secrets.SSH_PASSWORD }}
         script: |
-          cd ~/psn-hack-bot; bash deploy.sh;
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          cd ~/psn-hack-bot
+          pm2 stop psn-hack-bot && pm2 delete psn-hack-bot;
+          rm -rf dist;
+          git pull;
+          yarn && yarn build;
+          pm2 start ecosystem.config.js --env production
