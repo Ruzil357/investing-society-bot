@@ -165,7 +165,7 @@ export class Bot {
                     // has been used
                     await invite.delete('used')
                     await member.setNickname(dbInvite.name)
-                    dbInvite.updateOne({ discordId: member.id })
+                    await dbInvite.updateOne({ discordId: member.id })
                 }
             } catch {}
 
