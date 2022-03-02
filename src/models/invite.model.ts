@@ -22,9 +22,13 @@ const inviteModel = new Schema({
   },
   discordId: {
     type: Schema.Types.String,
-    requires: false
-  }
-})
+    required: false,
+  },
+  createdAt: {
+    type: Schema.Types.Number,
+    required: true,
+  },
+});
 
 
 export default mongoose.model<IInvite>('Invite', inviteModel)
